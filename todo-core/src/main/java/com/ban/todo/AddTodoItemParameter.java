@@ -1,5 +1,7 @@
 package com.ban.todo;
 
+import com.google.common.base.Strings;
+
 import lombok.Getter;
 
 /**
@@ -13,5 +15,12 @@ public class AddTodoItemParameter {
 
     public AddTodoItemParameter(final String content) {
         this.content = content;
+    }
+
+    public static AddTodoItemParameter of(String content) {
+        if (Strings.isNullOrEmpty(content)) {
+            throw new IllegalArgumentException("Empty content is not allowed");
+        }
+        return new AddTodoItemParameter(content);
     }
 }
